@@ -1,0 +1,11 @@
+pluginManagement.repositories {
+    gradlePluginPortal()
+}
+
+rootProject.name = 'mood-tracker'
+
+include 'mood-tracker-mysql'
+include 'mood-tracker-apm'
+include 'mood-tracker-web'
+include 'mood-tracker-service'
+
