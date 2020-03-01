@@ -1,0 +1,89 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'org.unbroken-dome.test-sets' version '2.2.1'
+}
+
+group = 'nz.co.moodtracker'
+version = '1.0.0'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven {
+		url 'https://repo.spring.io/milestone'
+	}
+}
+
+ext {
+	springCloudVersion = 'Hoxton.SR1'
+
+	springdocOpenapiCoreVersion = '1.1.49'
+	springdocOpenapiUiVersion = '1.1.49'
+
+	mysqlConnectorVersion = '8.0.19'
+
+	h2Version = '1.4.200'
+	assertjVersion = '3.15.0'
+	mockitoVersion = '3.2.4'
+	restAssuredVersion = '4.2.0'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation "org.springdoc:springdoc-openapi-core:${springdocOpenapiCoreVersion}"
+	implementation "org.springdoc:springdoc-openapi-ui:${springdocOpenapiUiVersion}"
+
+	runtimeOnly "mysql:mysql-connector-java:${mysqlConnectorVersion}"
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation "com.h2database:h2:${h2Version}"
+	testImplementation "org.assertj:assertj-core:${assertjVersion}"
+	testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+	testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+	testImplementation "io.rest-assured:spring-mock-mvc:${restAssuredVersion}"
+	testImplementation "io.rest-assured:xml-path:${restAssuredVersion}"
+	testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+	testImplementation "io.rest-assured:rest-assured-common:${restAssuredVersion}"
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+testSets {
+	integrationTest
+	endToEndTest
+}
+
+def profile = 'dev'
+bootRun {
+	args = ["--spring.profiles.active=" + profile]
+}
+
+bootJar {
+	mainClassName = 'nz.co.moodtracker.MoodTrackerApplication'
+}
+
+task copyYml(type: Copy) {
+	from 'src/main/resources/application.yml'
+	into 'build'
+}
+
+task copyDocker(type: Copy) {
+	from 'docker/release'
+	into 'build'
+}
+
+build.dependsOn test, integrationTest, endToEndTest, copyDocker, copyYml, bootJar

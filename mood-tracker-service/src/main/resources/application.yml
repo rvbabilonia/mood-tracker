@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: mood-tracker-service
+  datasource:
+    url: jdbc:mysql://db:3306/moodtracker?autoReconnect=true&useSSL=false
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+logging:
+  level:
+    root: INFO
+
+springdoc:
+  api-docs:
+    path: /api/v1/api-docs
+  swagger-ui:
+    path: /api/v1/swagger-ui-custom.html

@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  api:
+    build:
+      context: ./../../build
+      dockerfile: Dockerfile
+    image: mood-tracker-service:1.0.0
+    container_name: mood-tracker-service
+    ports:
+      - 8080:8080
+    networks:
+      - dbnet
+      - esnet
+      - uinet
+
+networks:
+  dbnet:
+  esnet:
+  uinet:
