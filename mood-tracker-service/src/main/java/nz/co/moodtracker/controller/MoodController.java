@@ -35,7 +35,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping(value = "api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = {"http://localhost:4200", "http://web:4200"}, allowedHeaders = "*")
+@CrossOrigin(origins = {"http://localhost:4200", "http://web:4200"}, allowedHeaders = "*", allowCredentials = "true")
 public class MoodController {
 
     private static final int MAX_AGE = 24 * 60 * 60; // expires in 24 hours
