@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  db:
+    image: mysql:8.0.19
+    container_name: mood-tracker-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: moodtracker
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    networks:
+      - dbnet
+
+networks:
+  dbnet:

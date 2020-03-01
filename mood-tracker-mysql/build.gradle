@@ -1,0 +1,28 @@
+plugins {
+	id 'org.liquibase.gradle' version '2.0.2'
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	liquibaseCoreVersion = '3.8.7'
+	mysqlConnectorJavaVersion = '8.0.19'
+}
+
+dependencies {
+	liquibaseRuntime "org.liquibase:liquibase-core:${liquibaseCoreVersion}"
+	liquibaseRuntime "mysql:mysql-connector-java:${mysqlConnectorJavaVersion}"
+}
+
+liquibase {
+	activities {
+		main {
+			changeLogFile 'src/main/resources/changelog.xml'
+			url 'jdbc:mysql://localhost:3306/moodtracker?createDatabaseIfNotExist=true'
+			username 'user'
+			password 'password'
+		}
+	}
+}
