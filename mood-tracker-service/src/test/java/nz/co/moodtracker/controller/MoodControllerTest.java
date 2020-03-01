@@ -126,9 +126,7 @@ class MoodControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(cookie().exists("clientId"))
                 .andExpect(cookie().maxAge("clientId", 86400))
-                .andExpect(cookie().path("clientId", "/"))
-                .andExpect(cookie().secure("clientId", true))
-                .andExpect(cookie().httpOnly("clientId", true));
+                .andExpect(cookie().path("clientId", "/"));
     }
 
     @Test

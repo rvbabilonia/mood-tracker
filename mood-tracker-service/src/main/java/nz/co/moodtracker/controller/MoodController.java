@@ -35,7 +35,8 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping(value = "api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = {"http://localhost:4200", "http://web:4200"}, allowedHeaders = "*", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200", "http://web:4200"}, allowedHeaders = "*", allowCredentials = "true",
+        exposedHeaders = "Set-Cookie")
 public class MoodController {
 
     private static final int MAX_AGE = 24 * 60 * 60; // expires in 24 hours
@@ -64,8 +65,7 @@ public class MoodController {
         HttpHeaders headers = new HttpHeaders();
         if (StringUtils.isBlank(clientId)) {
             clientId = UUID.randomUUID().toString();
-            headers.add("Set-Cookie",
-                    String.format("clientId=%s; Max-Age=%d; Path=/; Secure; HttpOnly", clientId, MAX_AGE));
+            headers.add("Set-Cookie", String.format("clientId=%s; Max-Age=%d; Path=/", clientId, MAX_AGE));
         }
 
         moodService.saveAndFlush(clientId, request);
