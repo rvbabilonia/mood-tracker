@@ -1,5 +1,7 @@
 # mood-tracker
 
+[![Build Status](https://travis-ci.org/rvbabilonia/mood-tracker.svg)](https://travis-ci.org/rvbabilonia/mood-tracker)
+
 ## Usage
 
 ### Database
