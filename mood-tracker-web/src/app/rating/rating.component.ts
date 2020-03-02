@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ChartType, ChartOptions } from 'chart.js';
 import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import { Mood } from '../mood';
-import { ApiService } from '../api.service'
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-rating',
@@ -24,7 +24,7 @@ export class RatingComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
-  public pieChartColors: Array<any> = [{backgroundColor: ["#e84351", "#434a54", "#3ebf9b", "#4d86dc", "#f3af37"]}];
+  public pieChartColors: Array<any> = [{backgroundColor: ['#e84351', '#434a54', '#3ebf9b', '#4d86dc', '#f3af37']}];
   config: any;
   collection = { count: 0, data: [] };
 
