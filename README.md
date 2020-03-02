@@ -33,6 +33,7 @@ The `mood-tracker-service` module has been compiled and tested on Gradle 6.2.1 a
    ```shell script
    mood-tracker\mood-tracker-service\docker\release>docker-compose up
    ```
+4. Go to `http://localhost:8080/api/v1/swagger-ui-custom.html` to view the Swagger documentation.
 
 ### Web Interface
 
