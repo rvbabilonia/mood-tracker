@@ -1,3 +1,9 @@
 language: java
+
 jdk: openjdk11
-sudo: false
+
+before_install:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew :mood-tracker-service:build
