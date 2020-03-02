@@ -1,9 +1,19 @@
-language: java
+matrix:
+  include:
+    - language: java
+      jdk: openjdk11
+      before_install:
+        - chmod +x gradlew
+      script:
+        - ./gradlew :mood-tracker-service:build
+    - language: node_js
+      node_js: 13.9.0
+      before_install:
+        - cd mood-tracker-web
+      install:
+        - npm install
+      script:
+        - ng test
 
-jdk: openjdk11
-
-before_install:
-  - chmod +x gradlew
-
-script:
-  - ./gradlew :mood-tracker-service:build
+notifications:
+  email: false
