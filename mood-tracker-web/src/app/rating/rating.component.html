@@ -1,0 +1,63 @@
+<div class="container">
+  <form #moodForm="ngForm" (submit)="submitForm(moodForm)" novalidate>
+    <div>
+      <h4>Rating</h4>
+    </div>
+    <div *ngIf="isSubmitted && moodForm.invalid" class="alert alert-warning">
+      Please select a rating
+    </div>
+    <div>
+      <input id="stressed" type="radio" value="1" name="rating" ngModel required>
+      <label for="stressed">Stressed</label>
+    </div>
+    <div>
+      <input id="grumpy" type="radio" value="2" name="rating" ngModel required>
+      <label for="grumpy">Grumpy</label>
+    </div>
+    <div>
+      <input id="meh" type="radio" value="3" name="rating" ngModel required>
+      <label for="meh">Meh</label>
+    </div>
+    <div>
+      <input id="normal" type="radio" value="4" name="rating" ngModel required>
+      <label for="normal">Normal</label>
+    </div>
+    <div>
+      <input id="happy" type="radio" value="5" name="rating" ngModel required>
+      <label for="happy">Happy</label>
+    </div>
+
+    <div>
+      <h4><label for="message">Optional Message</label></h4>
+    </div>
+    <div>
+      <textarea id="message" name="message" ngModel></textarea>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
+
+  <div *ngIf="isSubmitted && isPopulated">
+    <h2>Overall Team Mood Indicator</h2>
+    <div>
+      <h4>Ratings</h4>
+      <div style="display: block;">
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend"
+                [colors]="pieChartColors">
+        </canvas>
+      </div>
+    </div>
+    <div>
+      <h4>Messages</h4>
+      <ul>
+        <li *ngFor="let message of messages | paginate: config">{{message}}</li>
+      </ul>
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+  </div>
+</div>
