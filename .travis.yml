@@ -7,17 +7,17 @@ matrix:
         - chmod +x gradlew
       script:
         - ./gradlew :mood-tracker-service:build
-    - language: node_js
-      node_js: 13.9.0
-      dist: xenial
-      services:
-        - xvfb
-      before_install:
-        - cd mood-tracker-web
-      install:
-        - npm install
-      script:
-        - ng test
+#    - language: node_js
+#      node_js: 13.9.0
+#      dist: xenial
+#      services:
+#        - xvfb
+#      before_install:
+#        - cd mood-tracker-web
+#      install:
+#        - npm install
+#      script:
+#        - ng test
 
 notifications:
   email: false
