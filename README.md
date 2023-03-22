@@ -40,11 +40,19 @@ The `mood-tracker-service` module has been compiled and tested on Gradle 6.2.1 a
 The `mood-tracker-web` module has been compiled and tested on Node 13.9.0, NPM 6.14.1 and Angular CLI 7.3.9.
 There is a known issue with latest NG2-Charts 2.3.0 library so 2.2.3 is used instead.
 
-1. Start NPM.
+1. Optionally check if frontend can run.
     ```shell script
     mood-tracker\mood-tracker-web>npm start
     ```
-2. Go to `http://localhost:4200`.
+2. Create a production build.
+    ```shell script
+    mood-tracker\mood-tracker-web>ng build --prod
+    ```
+3. Start `mood-tracker-web` Docker container.
+    ```shell script
+    mood-tracker\mood-tracker-web\docker\release>docker-compose up
+    ```
+4. Go to `http://localhost:4200`.
 
 ### Optional Application Performance Management
 
@@ -78,4 +86,3 @@ Due to time constraints, the following features/tasks were not completed:
 * Formatting with Spotless and Checkstyle
 * Frontend unit tests with Karma
 * Frontend end-to-end tests with Protractor
-* Dockerized frontend
